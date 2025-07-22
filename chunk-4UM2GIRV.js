@@ -1,0 +1,1 @@
+import"./chunk-4CLCTAJ7.js";var e=[{path:"",loadComponent:()=>import("./chunk-4IMKIHK4.js").then(t=>t.FrequentlyAskedQuestionsPageComponent),title:"Preguntas Frecuentes | Ticket Per\xFA"},{path:"**",loadComponent:()=>import("./chunk-57EUIXPW.js").then(t=>t.NotFoundPageComponent)}];export{e as routes};
