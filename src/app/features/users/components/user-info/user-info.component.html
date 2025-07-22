@@ -1,0 +1,87 @@
+<div class="shadow-md border border-zinc-300 p-4 pb-6 rounded-lg">
+    <div>
+        <h2 class="text-lg font-semibold">Información Personal</h2>
+        <!-- <p class="text-sm text-zinc-400">Actualiza tu información personal</p> -->
+    </div>
+    <div class="grid grid-cols-12 gap-4">
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Tipo de documento:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.docType" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de documento:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.numDoc" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Nombre:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.name" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.partenalLastName" />
+        </div>        
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido materno:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.maternalLastName" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Teléfono:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.phoneNumber" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Género:</label>
+            <p-select [options]="genders" [(ngModel)]="user.genderObj" placeholder="Seleccione" optionLabel="description" class="w-full" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtfechaNacimiento" class="text-sm text-slate-500 font-medium mb-2">Fecha de nacimiento:</label>
+            <p-datepicker [(ngModel)]="user.birthdate" [iconDisplay]="'input'" [showIcon]="true" inputId="txtfechaNacimiento" 
+                styleClass="w-full" placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" />
+        </div>
+        <h3 class="font-semibold col-span-12">Dirección</h3>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Dirección:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="user.address" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Departamento:</label>
+            <p-select [options]="departments" [(ngModel)]="user.departmentObj" placeholder="Seleccione" optionLabel="description" class="w-full" (ngModelChange)="departmentChange()" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Provincia:</label>
+            <p-select [options]="provinces" [(ngModel)]="user.provinceObj" placeholder="Seleccione" optionLabel="description" class="w-full" (ngModelChange)="provinceChange()" [disabled]="getPropertyNo('departmentObj').length === 0" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Distrito:</label>
+            <p-select [options]="districts" [(ngModel)]="user.districtObj" placeholder="Seleccione" optionLabel="description" class="w-full" [disabled]="getPropertyNo('provinceObj').length === 0" />
+        </div>
+        @if(isMinor()) {            
+            <h3 class="font-semibold col-span-12">Datos del apoderado</h3>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Nombre de apoderado:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="user.representativeName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="user.representativePartenalLastName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="user.representativeMartenalLastName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de documento:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="user.representativeNumDoc" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de teléfono:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="user.representativePhoneNumber" />
+            </div>
+        }
+    </div>
+
+    <div class="text-center my-4">
+        <button class="rounded-xl  font-semibold shadow-lg bg-red-500 text-white px-4 py-1 transition duration-300 ease-in-out hover:bg-red-600 ">  
+            Guardar cambios
+        </button>
+    </div>
+</div>

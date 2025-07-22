@@ -1,0 +1,87 @@
+<div class="shadow-md border border-zinc-300 p-4 pb-6 rounded-lg">
+    <div>
+        <h2 class="text-lg font-semibold">Información Personal</h2>
+        <p class="text-sm text-zinc-400">Actualiza tu información personal y de contacto</p>
+    </div>
+    <div class="grid grid-cols-12 gap-4 mt-4">
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Tipo de documento:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.docType" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de documento:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.numDoc" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Nombre:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.name" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.partenalLastName" />
+        </div>        
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido materno:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.maternalLastName" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Teléfono:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.phoneNumber" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Género:</label>
+            <p-select [options]="genders" [(ngModel)]="userCopy.genderObj" placeholder="Seleccione" optionLabel="description" class="w-full" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtfechaNacimiento" class="text-sm text-slate-500 font-medium mb-2">Fecha de nacimiento:</label>
+            <p-datepicker [(ngModel)]="userCopy.birthdate" [iconDisplay]="'input'" [showIcon]="true" inputId="txtfechaNacimiento" 
+                styleClass="w-full" placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" />
+        </div>
+        <h3 class="font-semibold col-span-12">Dirección</h3>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Dirección:</label>
+            <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.address" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Departamento:</label>
+            <p-select [options]="departments" [(ngModel)]="userCopy.departmentObj" placeholder="Seleccione" optionLabel="description" class="w-full" (ngModelChange)="getProvinces()" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Provincia:</label>
+            <p-select [options]="provinces" [(ngModel)]="userCopy.provinceObj" placeholder="Seleccione" optionLabel="description" class="w-full" (ngModelChange)="getDistricts()" [disabled]="getPropertyNo('departmentObj').length === 0" />
+        </div>
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Distrito:</label>
+            <p-select [options]="districts" [(ngModel)]="userCopy.districtObj" placeholder="Seleccione" optionLabel="description" class="w-full" [disabled]="getPropertyNo('provinceObj').length === 0" />
+        </div>
+        @if(isMinor()) {            
+            <h3 class="font-semibold col-span-12">Datos del apoderado</h3>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Nombre de apoderado:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.representativeName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.representativePartenalLastName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.representativeMartenalLastName" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de documento:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.representativeNumDoc" />
+            </div>
+            <div class="flex flex-col col-span-12 md:col-span-6">
+                <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Número de teléfono:</label>
+                <input type="text" id="txtName"  pInputText [(ngModel)]="userCopy.representativePhoneNumber" />
+            </div>
+        }
+    </div>
+
+    <div class="text-center my-4">
+        <button class="rounded-xl  font-semibold shadow-lg bg-red-500 text-white px-4 py-1 transition duration-300 ease-in-out hover:bg-red-600 ">  
+            Guardar cambios
+        </button>
+    </div>
+</div>

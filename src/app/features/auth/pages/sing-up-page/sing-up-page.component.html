@@ -1,0 +1,74 @@
+<div class="flex justify-center  bg-red-700 p-8">
+    <div class="rounded-lg bg-white p-6 border border-slate-300 shadow-xl w-80 sm:w-96 mx-auto">                 
+          <div>
+            <div class="mt-2 mb-4">
+                <div class="text-4xl font-bold text-red-500 text-center">
+                    Ticket<span class="text-red-600">Perú</span>
+                </div>
+            </div>
+            <div class="my-1">
+                <h1 class="text-sm text-slate-500 font-medium text-center">
+                    Registrate ahora y participa en nuestros sorteos
+                </h1>
+                <h1 class="text-center text-xl font-semibold bg-gradient-to-r from-orange-400  to-red-600 text-transparent bg-clip-text">
+                    ¡Estás a un paso de ganar!
+                </h1>                
+            </div>
+             <!-- logo -->
+            
+            <div class="flex flex-col gap-3 my-4 text-slate-500">
+                <div class="flex flex-col">
+                    <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Nombre:</label>
+                    <input type="text" id="txtName"  pInputText [(ngModel)]="register.name" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtApePaterno" class="text-sm text-slate-500 font-medium mb-2">Apellido paterno:</label>
+                    <input type="text" id="txtApePaterno"  pInputText [(ngModel)]="register.apellidoPaterno" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtApeMaterno" class="text-sm text-slate-500 font-medium mb-2">Apellido materno:</label>
+                    <input type="text" id="txtApeMaterno"  pInputText [(ngModel)]="register.apellidoMaterno" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtNumDoc" class="text-sm text-slate-500 font-medium mb-2">Número de DNI:</label>
+                    <input type="text" id="txtNumDoc"  pInputText [(ngModel)]="register.numDoc" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtfechaNacimiento" class="text-sm text-slate-500 font-medium mb-2">Fecha de nacimiento:</label>
+                    <p-datepicker [(ngModel)]="register.birthDate" [iconDisplay]="'input'" [showIcon]="true" inputId="txtfechaNacimiento" 
+                        styleClass="w-full" placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtEmail" class="text-sm text-slate-500 font-medium mb-2">Correo electrónico:</label>
+                    <input type="email" id="txtEmail"  pInputText [(ngModel)]="register.email" />
+                </div>
+                <div class="flex flex-col">
+                    <label for="txtPassword" class="text-sm text-slate-500 font-medium mb-2">Contraseña:</label>
+                    <input type="password" id="txtPassword"  pInputText [(ngModel)]="register.password" />
+                </div>
+                <div class="flex flex-col gap-1">                    
+                    <div class="flex items-center gap-2">
+                        <p-checkbox [(ngModel)]="acceptTermsAndConditions" [binary]="true" inputId="chkTermsConditions" />
+                        <label for="chkTermsConditions" class="text-sm font-medium">Acepto los términos y condiciones</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <p-checkbox [(ngModel)]="acceptPrivacyPolicy" [binary]="true" inputId="chkPrivacyPolicy"/>
+                        <label for="chkPrivacyPolicy" class="text-sm font-medium">Acepto la política de Privacidad</label>
+
+                    </div>
+                </div>
+                <div class="my-4">
+                    <button class="bg-red-600 text-white text-lg font-semibold h-[42px] w-full rounded-lg border ">  
+                        Registrarse
+                    </button>
+                </div>
+                <div class="">
+                    <p class="text-center text-sm text-slate-500">
+                        ¿Ya tienes una cuenta? Inicia sesión 
+                        <a routerLink="/iniciar-sesion" class="text-blue-500 hover:underline">aquí</a>
+                    </p>                                        
+                </div>
+            </div>
+          </div>
+    </div>
+</div>

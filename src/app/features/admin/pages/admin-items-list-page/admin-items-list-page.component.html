@@ -1,0 +1,86 @@
+<admin-header></admin-header>
+
+    <section class="mx-auto  max-w-[1500px]">
+        <div class="mx-8">
+
+            <div class="my-3 flex justify-between">
+                <h1 class="uppercase font-bold text-xl ">Items</h1>
+                <p-button label="Nuevo" size="small" severity="info" (onClick)="newItem()" />
+            </div>
+
+        <div class="">
+            <!-- [totalRecords]="totalRecords"
+            
+            (onPage)="nextPage($event)"
+            [(first)]="firstPageToReset"
+            [rows]="pageSize"
+            [rowsPerPageOptions]="rowsPerPageOptions"
+            (onRowSelect)="showOrderDetailModal()"         
+            [(selection)]="selectedInvoice"  -->
+            <!-- [lazy]="true"  -->
+             <!-- [paginator]="true" -->
+            <p-table 
+                [value]="items" 
+                [tableStyle]="{ 'min-width': '45rem' }"                
+                styleClass="text-sm"
+                selectionMode="single"
+                dataKey="itemNo"            
+                
+                [(selection)]="selectedItem"        
+                (onRowSelect)="showModal()"
+                
+                [scrollable]="true" 
+                [scrollHeight]="'flex'"   
+                >
+                <ng-template #header>
+                    <tr>
+                        <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                            N° Item 
+                        </th>                    
+                        <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                            Item 
+                        </th>
+                        <!-- <th class="bg-slate-200"  style="width:15%">
+                            Imagen                         
+                        </th> -->
+                        <th class="bg-slate-200"  style="width:15%">
+                            Costo Item 
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template #body let-item >
+                    <tr 
+                    [pSelectableRow]="item"
+                    >      
+                        <td class="px-1 md:px-3">
+                            {{ item.itemNo }}
+                        </td>                    
+                        <td class="px-1 md:px-3" >
+                            {{ item.itemName }}
+                        </td>              
+                        <!-- <td class="px-1 md:px-3" >
+                            {{ item.imageUrl }}
+                        </td>                                                              -->
+                        <td class="px-1 md:px-3">                       
+                            {{ item.itemPrice | currency: 'S/ '}}
+                        </td>                         
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">                       
+                    <tr>
+                        <td colspan="3" class="text-center">No se encontraron registros.</td>
+                    </tr>
+                </ng-template>
+                
+            </p-table>
+        </div>
+    </div>
+
+</section>
+
+<admin-modal-item
+    [(visible)]="modalVisible"
+    [item]="selectedItem"
+    [mode]="modalMode"
+></admin-modal-item>

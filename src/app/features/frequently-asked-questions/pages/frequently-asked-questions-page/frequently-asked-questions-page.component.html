@@ -1,0 +1,41 @@
+<shared-header-footer-container>
+
+    <section class="my-16 container mx-auto px-4 lg:px-20 xl:px-36">
+        <div class="w-3/5 mx-auto mb-8 text-center">
+            <h1 class="uppercase font-bold text-3xl text-center">Preguntas Frecuentes</h1>
+        </div>        
+        
+        @for (category of faqCategories; track $index; let last = $last ) {
+            <div class="my-8">
+                <h2 class="font-bold text-2xl text-red-500">{{category}}</h2>
+                <div class="m-4">
+                    @for (faq of getFaqByCategory(category); track $index) {
+                        <div class="my-4">                        
+                            <div class="font-medium flex justify-between w-full cursor-pointer text-lg "
+                                (click) ="toggleFaqVisibility(faq.id)">
+                                <span>{{faq.title}}</span>
+
+                                <span class="pi pi-angle-down transition duration-200 ease-in-out" [ngClass]="{'rotate-180': openFaqId === faq.id}"></span>
+                            </div>                            
+                            <div 
+                                class="grid transition-all duration-300 ease-in-out overflow-hidden m-3 text-slate-700"
+                                [style.grid-template-rows]="openFaqId === faq.id ? '1fr' : '0fr'"
+                                 >
+                                 <div class="min-h-0 ">
+                                    <p>{{faq.content}}</p>
+                                 </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @if(!last) {
+                    <hr>
+                }
+            </div>
+        }        
+
+    </section>
+
+
+</shared-header-footer-container>

@@ -1,0 +1,30 @@
+<div class="shadow-md border border-zinc-300 p-4 pb-6 rounded-lg">
+    <div>
+        <h2 class="text-lg font-semibold">Historial de movimientos</h2>
+        <p class="text-sm text-zinc-400">Revisa todos tus movimientos de tickets</p>
+    </div>
+    <div class="my-3">
+
+        <p-table [value]="ticketTransaction" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>                    			
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th class="text-right">Tickets</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-transaction>
+                <tr>
+                    <td>{{ transaction.date | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ transaction.transactionType }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td class="text-right font-medium" [ngClass]="{'text-red-500': transaction.transactionType === 'Participación'}">
+                        {{ transaction.ticketsAmount | formatTicketTransaction:transaction.transactionType }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+</div>

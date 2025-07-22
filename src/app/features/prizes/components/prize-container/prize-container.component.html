@@ -1,0 +1,7 @@
+<div class="max-w-5xl flex flex-wrap gap-8 justify-center items-center">
+    @for (prize of prizes; track $index) {
+        <prize-item
+            [prize]="prize"
+        ></prize-item>
+    }
+</div>

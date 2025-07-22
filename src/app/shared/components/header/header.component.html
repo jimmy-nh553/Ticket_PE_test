@@ -1,0 +1,140 @@
+<div class="bg-white shadow-sm border-b border-gray-200 sticky top-0 right-0 left-0" style="z-index: 1000;">
+      <div class="container mx-auto px-4 py-3">
+        
+        <div class="flex items-center justify-between">
+          <!-- logo -->
+          <div class="flex items-center gap-2" >
+            <!-- mobile button -->
+            <button class="bg-transparent md:hidden mt-[6px]" (click)="toggleMobileSideBar($event)">
+              <i class="pi pi-bars"></i>
+            </button>
+
+            <div class="text-2xl font-bold text-red-500 cursor-pointer" routerLink="/">
+              Ticket<span class="text-red-600">Perú</span>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="hidden md:flex items-center space-x-8">
+            @for (item of navigationItems; track $index) {
+              <a [routerLink]="item.routerLink" 
+                routerLinkActive="border-b-2 border-red-500" 
+                [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+                class="transition duration-300 ease-in-out"
+              >
+                {{item.label}}
+              </a>
+            }
+          </nav>
+
+          @if(userIsLogged) {
+            <!-- User Section -->
+            <div class="relative  flex items-center space-x-4">
+              <!-- User Info -->
+              <div class="hidden lg:flex items-center space-x-2 font-medium text-gray-700">
+                <!-- <i class="pi pi-user h-4 w-4 text-gray-600"></i> -->
+                <span class="">{{ user.name }} {{ user.partenalLastName }}</span>
+              </div>
+
+              <!-- User Avatar -->
+              <button class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center cursor-pointer transition duration-300 ease-in-out border-2 border-transparent hover:border-slate-300"
+                (click)="changeUserPopOverVisibility()" (blur)="popOverVisibility = false" >
+                <span class="text-white text-xs font-bold">
+                  @if (user.userInitials.trim().length === 0) {
+                    <i class="pi pi-user h-4 w-4 text-white"></i>
+                  }
+                  @else {
+                    {{ user.userInitials }}
+                  }
+                </span>
+              </button>
+              
+              <!-- menu pop over -->
+              @if(popOverVisibility) {
+                <div class="absolute top-0 right-0 text-zinc-600 bg-white mt-[50px] p-2 shadow-lg rounded-xl border border-slate-300 w-[170px]">
+                  <ul>
+                    @for (item of popOverItems; track $index) {
+                      <li class="p-1 hover:bg-slate-200 rounded-lg cursor-pointer flex gap-2 items-center" 
+                        [routerLink]="item.routerLink" (mousedown)="$event.preventDefault()">
+                        <i [class]="item.icon"></i> {{item.label}}
+                      </li>
+                    }
+                    <li class="p-1 hover:bg-slate-200 cursor-pointer"
+                      (click)="logout($event)" (mousedown)="$event.preventDefault()">
+                      <i class="pi pi-sign-out"></i> Cerrar Sesión
+                    </li>
+                  </ul>
+                </div>
+              }
+            </div>
+            
+          }
+          @else {
+            <button routerLink="/iniciar-sesion"
+              class="rounded-xl font-semibold  shadow-lg bg-red-500 text-white px-8 py-1 transition duration-300 ease-in-out hover:bg-red-600 hover:scale-105">
+              Iniciar Sesión
+            </button>
+          }
+
+          
+        </div>
+
+        <!-- Mobile Navigation -->       
+        
+      </div>
+    </div>
+
+
+    <p-drawer [(visible)]="sideBarVisible" #drawer >
+    <ng-template #headless>
+        <div class=" flex flex-col h-full p-4">
+            <div>
+                <div class="flex justify-between items-center font-semibold ">
+                  <div class="flex gap-2 items-center">
+                    <button class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center  border-2 border-transparent">
+                      <span class="text-white text-xs font-bold">
+                        @if (user.userInitials.trim().length === 0) {
+                          <i class="pi pi-user h-4 w-4 text-white"></i>
+                        }
+                        @else {
+                          {{ user.userInitials }}
+                        }
+                      </span>
+                    </button>
+                    <h2 class="text-lg">{{ user.name }} {{ user.partenalLastName }}</h2>
+                  </div>
+                    <span class="pi pi-times-circle text-xl cursor-pointer hover:opacity-65"
+                        (click)="closeSideBar($event)"
+                    ></span>
+                </div>
+            </div>
+            <hr class="my-3">    
+            <div class="grow">
+                <ul class="font-semibold flex flex-col">
+
+                  @for (item of navigationItems; track $index) {
+                    <!-- <a [routerLink]="item.routerLink" routerLinkActive="border-b-2 border-red-500">
+                      {{item.label}}
+                    </a> -->
+
+                    <li [routerLink]="item.routerLink" (click)="toggleMobileSideBar($event)" [routerLinkActiveOptions]="{'exact': true}" routerLinkActive="bg-red-500 text-white" class="cursor-pointer p-2 mb-1 rounded-border text-surface-700  hover:bg-surface-100 duration-150 transition-colors">
+                        <span class="text-[17px]">{{item.label}}</span>
+                    </li>
+                  }
+                </ul>
+             </div> 
+
+            <div>
+                <hr class="my-4">
+                <div
+                    (click)="logout($event)"
+                    class="px-4 py-2 flex items-center gap-2 cursor-pointer justify  text-red-600 font-semibold rounded-md hover:opacity-70  duration-150 transition-colors p-ripple"
+                >
+                    <span class="pi pi-sign-out"></span>
+                    <span>Cerrar sesión</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+          
+</p-drawer>

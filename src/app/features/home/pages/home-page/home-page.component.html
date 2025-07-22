@@ -1,0 +1,66 @@
+<shared-header-footer-container>
+    <!-- banner -->
+    <section class="container mx-auto">
+        <img src="https://placehold.co/700x300/000000/FFF" alt="banner" class="mx-auto w-full">
+    </section>
+
+    <section class="my-16">
+        <div class="w-3/5 mx-auto mb-8 text-center">
+            <h1 class="uppercase font-bold text-2xl text-center">Grandes <span class="text-red-600">beneficios para ti</span></h1>
+            <p class="mt-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio libero praesentium eveniet cupiditate, itaque quos sunt iusto maxime ipsa ea natus eaque aperiam. Praesentium aperiam quisquam sed totam temporibus vel?</p>
+        </div>
+
+        <div class="container mx-auto flex gap-4 w-3/4 items-center">
+            <div class="text-center w-3/5">
+                <h1 class="uppercase font-bold text-2xl text-center">¿Qué te ofrecemos <span class="text-red-600">en nuestra web?</span></h1>
+                <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ipsam adipisci omnis sequi deleniti dolores id, mollitia, hic nam ipsum repudiandae soluta consectetur animi provident, incidunt tenetur culpa saepe! Deserunt.</p>
+            </div>
+            <div class="w-2/5 ">
+                <img src="https://placehold.co/300x300/000000/FFF" alt="" class="rounded-3xl shadow-xl rotate-12 ">
+            </div>
+        </div>
+    </section>
+
+    <!-- premios -->
+    <section class="my-16">
+        <h1 class="uppercase font-bold text-2xl text-center mb-10">¡Premios disponibles!</h1>
+        <!-- premios contenedor -->
+        <div class="flex justify-center">
+            <prizes-container
+                [prizes]="prizes"
+            ></prizes-container>
+        </div>
+        <div class="flex justify-center my-8">
+            <a routerLink="/premios">
+                <button class="rounded-xl mx-auto font-semibold text-lg shadow-lg bg-red-500 text-white px-8 py-1 transition duration-300 ease-in-out hover:bg-red-600 hover:scale-105">
+                    Ver todos los premios
+                </button>                
+            </a>
+        </div>
+    </section>
+
+
+    <!-- testimonios -->
+     <section class="my-16">
+        <h1 class="uppercase font-bold text-2xl text-center mb-10">Testimonios <span class="text-red-600">que nos respaldan</span></h1>
+        <!-- video -->
+        <img src="https://placehold.co/600x300/000000/FFF" alt="" class="rounded-3xl shadow-xl mx-auto">
+     </section>
+
+     <!-- redes -->
+     <section class="my-16">
+        <h2 class="uppercase font-bold text-xl text-center mb-10">SÍGUENOS  EN NUESTRAS REDES SOCIALES Y PARTICIPA EN NUESTROS SORTEOS</h2>
+        <div class="flex gap-8 justify-center">
+            <a href="#">
+                <i class="pi pi-facebook text-2xl transition duration-300 ease-in-out hover:scale-150"></i>
+            </a>
+            <a href="#">
+                <i class="pi pi-instagram text-2xl transition duration-300 ease-in-out hover:scale-150"></i>
+            </a>
+            <a href="#">
+                <i class="pi pi-tiktok text-2xl transition duration-300 ease-in-out hover:scale-150"></i>
+            </a>                    
+        </div>
+     </section>
+
+</shared-header-footer-container>

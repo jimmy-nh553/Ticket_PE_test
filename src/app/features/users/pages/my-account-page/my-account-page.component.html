@@ -1,0 +1,44 @@
+<shared-header-footer-container>
+
+    <section class="container max-w-5xl mx-auto my-10 flex flex-col w-full gap-2 px-4">
+        <div class="flex flex-col gap-4">
+            <div class="shadow-md flex justify-between border border-zinc-300 p-3 rounded-lg">
+                <div class="flex items-center gap-4 ">
+                    <span class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center ">
+                        <span class="text-white text-xs font-bold">                                    
+                            {{ user.userInitials }}                  
+                        </span>
+                    </span>
+                    <div>
+                        <p class="font-semibold text">{{user.name}} {{user.partenalLastName}}</p>
+                        <p class="text-sm text-zinc-500">{{user.email}}</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center gap-2 font-semibold ">
+                    <!-- <span class="pi pi-ticket"></span> -->
+                     <div class="flex flex-col md:flex-row  md:gap-2 items-end">
+                        <div class="flex gap-2 items-center">
+                            <i class="material-icons flex items-center mt-1">local_activity</i>
+                            <span class="text-xl md:text-3xl">{{user.tickets}}</span>
+                        </div>
+                        <span class="text-zinc-500 font-normal">{{user.tickets | i18nPlural:ticketsPluralPipe}}</span>
+                     </div>
+                </div>
+            </div>
+            
+            <p-selectbutton [options]="menuOptions" [(ngModel)]="selectedTab" optionLabel="label" 
+                styleClass="w-full" class="w-full" [allowEmpty]="false" (onOptionClick)="itemClick($event)" >
+                <ng-template #item let-item >
+                    <span class="hidden md:inline"><i [class]="item.icon" ></i></span>
+                    <span>{{item.label}}</span>
+                </ng-template>
+            </p-selectbutton>
+            
+        </div>
+
+        <router-outlet />
+
+    </section>
+
+</shared-header-footer-container>

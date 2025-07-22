@@ -1,0 +1,57 @@
+@if(inputOrientation === 'vertical') {
+
+  <div class="inline-flex flex-col rounded-lg border bg-white shadow-sm ">
+      <button
+        class="rounded-none rounded-t-lg border hover:bg-gray-200 h-8 border-zinc-200"
+        (click)="increment()"
+      >
+          <span class="pi pi-plus"></span>
+      </button>
+      <input
+        type="number"
+        
+        [(ngModel)]="value"      
+        (keypress)="validateOnlyNumbers($event)"
+        (blur)="validateOnBlur()"
+        class="h-8 w-9 border text-center appearance-none border-zinc-200 "
+        />
+      <button
+        class="rounded-none rounded-b-lg border hover:bg-gray-200 h-8 border-zinc-200"
+        (click)="decrement()"
+        [disabled]="value === 0"
+        [ngClass]="{'disabled': value === 0}"
+      >
+        <span class="pi pi-minus"></span>
+      </button>
+  </div>
+
+}
+@else {
+
+  <div class="inline-flex flex-row rounded-lg border bg-white shadow-sm">
+    <button
+      class="rounded-none rounded-l-lg border hover:bg-gray-200 h-[30px] w-8 border-zinc-200"
+      (click)="decrement()"
+      [disabled]="value === 0"
+      [ngClass]="{'disabled': value === 0}"
+    >
+      <span class="pi pi-minus"></span>
+    </button>
+    <input
+      type="number"
+      [(ngModel)]="value"      
+      (keypress)="validateOnlyNumbers($event)"
+      (blur)="validateOnBlur()"
+      class="h-[30px] w-12 border-y text-center appearance-none border-zinc-200 "
+    />
+    <button
+      class="rounded-none rounded-r-lg border hover:bg-gray-200 h-[30px] w-8 border-zinc-200"
+      (click)="increment()"
+    >
+      <span class="pi pi-plus"></span>
+    </button>
+  </div>
+
+}
+
+

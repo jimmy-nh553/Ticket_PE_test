@@ -1,0 +1,187 @@
+<admin-header></admin-header>
+
+<section class="mx-auto  max-w-[1500px]">
+    <div class="mx-8">
+
+        <div class="my-3 flex justify-between">
+            <h1 class="uppercase font-bold text-xl ">Sorteos</h1>
+            <p-button label="Nuevo" size="small" severity="info" (onClick)="newPrize()" />            
+        </div>
+
+    <div class="">
+        <!-- [totalRecords]="totalRecords"
+        
+        (onPage)="nextPage($event)"
+        [(first)]="firstPageToReset"
+        [rows]="pageSize"
+        [rowsPerPageOptions]="rowsPerPageOptions"        
+         -->
+        <!-- [lazy]="true"  -->
+         <!-- [paginator]="true" -->
+        <p-table 
+            [value]="prizes" 
+            [tableStyle]="{ 'min-width': '45rem' }"                
+            styleClass="text-sm"
+            selectionMode="single"
+            dataKey="no"     
+            [(selection)]="selectedPrize"        
+            (onRowSelect)="showModal()"
+            
+            
+            [scrollable]="true" 
+            [scrollHeight]="'flex'"   
+            >
+            <ng-template #header>
+                <tr>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        N° Sorteo
+                        <!-- <p-sortIcon field="no" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        N° Item 
+                        <!-- <p-sortIcon field="date" /> -->
+                    </th>                    
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Item 
+                        <!-- <p-sortIcon field="customerDoc" /> -->
+                    </th>
+                    <!-- <th class="bg-slate-200"  style="width:15%">
+                        Imagen                         
+                    </th> -->
+                    <th class="bg-slate-200"  style="width:15%">
+                        Costo Item 
+                        <!-- <p-sortIcon field="storeName" /> -->
+                    </th>                       
+                    <th class="bg-slate-200"  style="width:10%">
+                        Procentaje Ganancia
+                        <!-- <p-sortIcon field="paymentMethodDesc" /> -->
+                    </th>
+                    <th class="bg-slate-200"  style="width:10%">
+                        Total inc/ganancia
+                        <!-- <p-sortIcon field="paymentTermDesc" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                         Precio Ticket
+                        <!-- <p-sortIcon field="total" /> -->
+                    </th> 
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Total Tickets
+                        <!-- <p-sortIcon field="remainingAmount" /> -->
+                    </th> 
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Tickets Comprados
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Finalizado
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        DNI Ganador
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Ganador
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Fecha Inicio
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                    <th class="px-1 md:px-3 bg-slate-200"  style="width:10%">
+                        Fecha Sorteo
+                        <!-- <p-sortIcon field="isCanceled" /> -->
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-order >
+                <tr 
+                [pSelectableRow]="order"
+                >      
+                    <td class="px-1 md:px-3">
+                        {{ order.no }}
+                    </td>
+                    <td class="px-1 md:px-3">
+                        {{ order.itemNo }}
+                    </td>                    
+                    <td class="px-1 md:px-3" >
+                        {{ order.itemName }}
+                    </td>              
+                    <!-- <td class="px-1 md:px-3" >
+                        {{ order.imageUrl }}
+                    </td>                                                              -->
+                    <td class="px-1 md:px-3">                       
+                        {{ order.itemPrice | currency: 'S/ '}}
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ convertPorcentageToDecimal(order.profitPercentage) | percent:'1.2-2'}}
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ order.totalIncProfit | currency: 'S/ '}}
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ order.ticketPrice | currency: 'S/ '}}
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ order.ticketsTotal }}
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ order.ticketsProgress }}
+                    </td> 
+                    <td class="px-1 md:px-3 text-center">                       
+                        @if(order.isFinished){ 
+                            <span class="pi pi-check"></span>
+                        }
+                        @else {
+                            <span class="pi pi-times"></span>
+                        }
+                    </td>                         
+                    <td class="px-1 md:px-3">                       
+                        @if(order.winnerDoc.trim().length > 0){ 
+                            {{order.winnerDoc}}
+                        }
+                        @else {
+                            <span class="pi pi-minus"></span>
+                        }
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        @if(order.winnerName.trim().length > 0){ 
+                            {{order.winnerName}}
+                        }
+                        @else {
+                            <span class="pi pi-minus"></span>
+                        }
+                    </td> 
+                    <td class="px-1 md:px-3">                       
+                        {{ order.startDateTime | date:'dd/MM/yyyy HH:mm:ss' }}
+                    </td> 
+                    <td class="px-1 md:px-3">  
+                        @if(order.finishDateTime) {
+                            {{ order.finishDateTime | date:'dd/MM/yyyy HH:mm:ss' }}
+                        }                     
+                        @else {
+                            <span class="pi pi-minus  text-[13px]"></span>
+                        }
+                    </td> 
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">                       
+                <tr>
+                    <td colspan="14" class="text-center">No se encontraron registros.</td>
+                </tr>
+            </ng-template>
+            
+        </p-table>
+    </div>
+</div>
+
+</section>
+
+
+<admin-modal-prize
+    [(visible)]="modalVisible"
+    [prize]="selectedPrize"
+    [mode]="modalMode"
+    [items]="items"
+></admin-modal-prize>

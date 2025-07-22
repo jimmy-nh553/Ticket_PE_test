@@ -1,0 +1,32 @@
+<p-dialog
+    [header]="title"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '50rem' }"
+    (onHide)="clearInputs()"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+    <div class="grid grid-cols-12 gap-4 mt-4">    
+
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtItemName" class="text-sm text-slate-500 font-medium mb-2">Nombre:</label>
+            <input type="text" id="txtItemName"  pInputText [(ngModel)]="item.itemName" />
+        </div>
+
+        <div class="flex flex-col col-span-12 md:col-span-6">
+            <label for="txtName" class="text-sm text-slate-500 font-medium mb-2">Costo:</label>
+            <p-inputnumber [(ngModel)]="item.itemPrice" inputId="txtItemPrice" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2" />
+        </div>
+                       
+    </div>
+
+    <div class="text-center my-4">
+        <button class="rounded-xl  font-semibold shadow-lg bg-red-500 text-white px-4 py-1 transition duration-300 ease-in-out hover:bg-red-600 "
+            [disabled]="dataIsInvalid()" (click)="createConfirm($event)" 
+            [ngClass]="{'bg-slate-400 hover:bg-slate-400':dataIsInvalid()}">  
+            {{mode === 'edit' ? 'Guardar' : 'Crear item'}}
+        </button>
+    </div>
+</p-dialog>
+
+<p-confirmdialog />

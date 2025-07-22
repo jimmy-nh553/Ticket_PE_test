@@ -1,0 +1,11 @@
+<div class="w-[290px] text-center p-4 pt-2 rounded-xl border border-slate-300 shadow-xl">    
+    <div class="h-[60px] flex items-center justify-center w-full">
+        <p class="font-bold text-xl/6">{{winner.itemName}}</p>
+    </div>
+    <img [src]="winner.itemImageUrl" [alt]="winner.itemName" class="mx-auto">
+    <div class="pb-4 flex flex-col justify-center">
+        <div class="my-2 w-fit mx-auto text-sm bg-red-500 text-white rounded-lg px-2">Ganador</div>
+        <p class="font-semibold text-lg/6">{{winner.winnerName | titlecase}}</p>
+        <p>DNI {{winner.winnerDoc | formatDni}}</p>
+    </div>    
+</div>
