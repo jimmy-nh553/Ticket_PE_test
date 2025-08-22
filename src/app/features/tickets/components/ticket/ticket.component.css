@@ -1,4 +1,8 @@
-.material-icons {
+.icon-recomended {
+  color: #FFF;
+  font-size: 48px;
+}
+.icon-normal {
   color: #FF5733;
   font-size: 48px;
 }

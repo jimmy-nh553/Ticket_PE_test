@@ -1,23 +1,31 @@
-<div class=" text-center p-4 pt-2 rounded-xl border border-slate-300 shadow-xl  relative">
+<div class=" text-center p-4 pt-2 rounded-xl border border-slate-300 shadow-xl  relative" 
+    [ngClass]="ticketPackage.recomended ? 'bg-orange-500 text-white' : 'bg-white text-black'">
     @if(ticketPackage.recomended) {
-        <div class="absolute bg-orange-500 text-white -left-1 -top-1 m-1 px-2 rounded-lg">
+        <!-- <div class="absolute bg-orange-500 text-white -left-1 -top-1 m-1 px-2 rounded-lg"> -->
+        <div class="absolute bg-white text-orange-500 left-7 -top-3 right-7 m-1 px-2 rounded-lg font-medium border border-slate-300">
             Recomendado
         </div>
     }
 
     <div class="my-4">
-        <i class="material-icons">local_activity</i>
+        <i class="material-icons" [ngClass]="ticketPackage.recomended ? 'icon-recomended' : 'icon-normal'">
+            local_activity
+        </i>
     </div>
     <div class="justify-center w-full my-4">
         <p class="font-semibold text-xl/6">{{ticketPackage.name}}</p>
     </div>    
-    <div class="text-2xl text-zinc-500 font-bold">
+    <div class="text-2xl  font-bold"
+        [ngClass]="ticketPackage.recomended ? 'text-white' : 'text-zinc-500'">
         <span>{{ticketPackage.price | currency: 'S/ '}}</span>
     </div>
     <div class="mt-4">
         <p class=" ">{{ticketPackage.description}}</p>
     </div>
     <div class="py-4 flex gap-2">        
-        <button class="rounded-xl w-full font-semibold shadow-lg bg-red-500 text-white px-4 py-1 transition duration-300 ease-in-out hover:bg-red-600 hover:scale-105">Comprar</button>
+        <button class="rounded-xl w-full font-semibold shadow-lg px-4 py-1 transition duration-300 ease-in-out  hover:scale-105"
+            [ngClass]="ticketPackage.recomended ? 'bg-white hover:bg-slate-100 text-red-500' : 'bg-red-500 hover:bg-red-600 text-white'">
+            Comprar
+        </button>
     </div>    
 </div>

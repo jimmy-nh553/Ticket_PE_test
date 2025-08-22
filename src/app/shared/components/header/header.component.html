@@ -18,9 +18,11 @@
           <nav class="hidden md:flex items-center space-x-8">
             @for (item of navigationItems; track $index) {
               <a [routerLink]="item.routerLink" 
-                routerLinkActive="border-b-2 border-red-500" 
+                routerLinkActive=" border-red-500" 
                 [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
-                class="transition duration-300 ease-in-out"
+                class="transition duration-300 ease-in-out border-b-2"
+                #link="routerLinkActive"
+                [class.border-white]="!link.isActive"
               >
                 {{item.label}}
               </a>
@@ -121,6 +123,12 @@
                         <span class="text-[17px]">{{item.label}}</span>
                     </li>
                   }
+                  <!-- <hr class="my-4">
+                  @for (item of popOverItems; track $index) {                    
+                    <li [routerLink]="item.routerLink" (click)="toggleMobileSideBar($event)" [routerLinkActiveOptions]="{'exact': true}" routerLinkActive="bg-red-500 text-white" class="cursor-pointer p-2 mb-1 rounded-border text-surface-700  hover:bg-surface-100 duration-150 transition-colors">
+                        <span class="text-[17px]">{{item.label}}</span>
+                    </li>
+                  } -->
                 </ul>
              </div> 
 
