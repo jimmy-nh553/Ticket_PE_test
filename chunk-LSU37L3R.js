@@ -1,0 +1,1 @@
+import"./chunk-4CLCTAJ7.js";var t=[{path:"",loadComponent:()=>import("./chunk-LJKJVI62.js").then(o=>o.PrizesPageComponent),title:"Premios | Ticket Per\xFA"},{path:"**",loadComponent:()=>import("./chunk-57EUIXPW.js").then(o=>o.NotFoundPageComponent)}];export{t as routes};

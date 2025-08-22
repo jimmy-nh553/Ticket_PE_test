@@ -1,0 +1,1 @@
+import"./chunk-4CLCTAJ7.js";var t=[{path:"",loadComponent:()=>import("./chunk-KUWCT7FB.js").then(o=>o.WinnersPageComponent),title:"Ganadores | Ticket Per\xFA"},{path:"**",loadComponent:()=>import("./chunk-57EUIXPW.js").then(o=>o.NotFoundPageComponent)}];export{t as routes};
